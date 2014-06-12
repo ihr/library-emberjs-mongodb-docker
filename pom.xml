@@ -264,20 +264,20 @@
                             </arguments>
                         </configuration>
                     </execution>
-                    <!--<execution>-->
-                    <!--<id>Stop Docker container</id>-->
-                    <!--<phase>post-integration-test</phase>-->
-                    <!--<goals>-->
-                    <!--<goal>exec</goal>-->
-                    <!--</goals>-->
-                    <!--<configuration>-->
-                    <!--<executable>docker</executable>-->
-                    <!--<arguments>-->
-                    <!--<argument>stop</argument>-->
-                    <!--<argument>ihristov_library</argument>-->
-                    <!--</arguments>-->
-                    <!--</configuration>-->
-                    <!--</execution>-->
+                    <execution>
+                        <id>Stop Docker container</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker</executable>
+                            <arguments>
+                                <argument>stop</argument>
+                                <argument>ihristov_library</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
