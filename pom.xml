@@ -193,6 +193,20 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>Ensure setup.sh permission</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>chmod</executable>
+                            <arguments>
+                                <argument>+x</argument>
+                                <argument>setup.sh</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>Build Docker container</id>
                         <phase>pre-integration-test</phase>
                         <goals>
@@ -218,20 +232,6 @@
                             <arguments>
                                 <argument>+x</argument>
                                 <argument>prepare.sh</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Ensure setup.sh permission</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>chmod</executable>
-                            <arguments>
-                                <argument>+x</argument>
-                                <argument>setup.sh</argument>
                             </arguments>
                         </configuration>
                     </execution>

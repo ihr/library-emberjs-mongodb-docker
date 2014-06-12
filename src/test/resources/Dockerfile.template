@@ -42,6 +42,10 @@ ADD src/test/resources/books_array.json /{app.working.directory}/src/test/resour
 # Add the application WEBAPP directory
 ADD setup.sh /{app.working.directory}/
 
+# Just to verify that the script flags are OK
+RUN \
+    ls -la /app/setup.sh
+
 #Set port for the application
 ENV PORT 8080
 
