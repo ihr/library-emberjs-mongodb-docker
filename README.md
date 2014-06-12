@@ -76,3 +76,7 @@ In order to import data execute: mongoimport -v -d library -c books --jsonArray 
 docker build -t="ihristov/library" .
 
 docker run -p 8080:8080 -i -t ihristov/library
+
+Don't forget to expose the port via the VirtualBox as well
+
+To login docker container put /bin/bash as a final command in the setup.sh script
