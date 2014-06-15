@@ -3,8 +3,8 @@
 *.iml
 target
 Dockerfile
-prepare.sh
-setup.sh
+docker_rm.sh
+entrypoint.sh
 
 dependency-reduced-pom.xml
 

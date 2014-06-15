@@ -220,7 +220,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Ensure setup.sh permission</id>
+                        <id>Ensure entrypoint.sh permission</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>exec</goal>
@@ -229,7 +229,7 @@
                             <executable>chmod</executable>
                             <arguments>
                                 <argument>+x</argument>
-                                <argument>setup.sh</argument>
+                                <argument>entrypoint.sh</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -249,7 +249,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Ensure prepare.sh permission</id>
+                        <id>Ensure docker_rm.sh permission</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>exec</goal>
@@ -258,7 +258,7 @@
                             <executable>chmod</executable>
                             <arguments>
                                 <argument>+x</argument>
-                                <argument>prepare.sh</argument>
+                                <argument>docker_rm.sh</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -269,7 +269,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>prepare.sh</executable>
+                            <executable>docker_rm.sh</executable>
                         </configuration>
                     </execution>
                     <execution>
@@ -291,20 +291,20 @@
                             </arguments>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>Stop Docker container</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>docker</executable>
-                            <arguments>
-                                <argument>stop</argument>
-                                <argument>${docker.container.name}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>Stop Docker container</id>-->
+                        <!--<phase>post-integration-test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>exec</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<executable>docker</executable>-->
+                            <!--<arguments>-->
+                                <!--<argument>stop</argument>-->
+                                <!--<argument>${docker.container.name}</argument>-->
+                            <!--</arguments>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                 </executions>
             </plugin>
 
@@ -314,14 +314,14 @@
                 <version>${maven-replacer-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>Prepare prepare.sh</id>
+                        <id>Prepare docker_rm.sh</id>
                         <phase>package</phase>
                         <goals>
                             <goal>replace</goal>
                         </goals>
                         <configuration>
-                            <file>src/test/resources/prepare.sh.template</file>
-                            <outputFile>prepare.sh</outputFile>
+                            <file>src/test/resources/docker/docker_rm.sh.template</file>
+                            <outputFile>docker_rm.sh</outputFile>
                             <regex>false</regex>
                             <token>{docker-container.name}</token>
                             <value>${docker.container.name}</value>
@@ -334,7 +334,7 @@
                             <goal>replace</goal>
                         </goals>
                         <configuration>
-                            <file>src/test/resources/Dockerfile.template</file>
+                            <file>src/test/resources/docker/Dockerfile.template</file>
                             <outputFile>Dockerfile</outputFile>
                             <regex>false</regex>
                             <replacements>
@@ -354,14 +354,14 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Prepare setup.sh</id>
+                        <id>Prepare entrypoint.sh</id>
                         <phase>package</phase>
                         <goals>
                             <goal>replace</goal>
                         </goals>
                         <configuration>
-                            <file>src/test/resources/setup.sh.template</file>
-                            <outputFile>setup.sh</outputFile>
+                            <file>src/test/resources/docker/entrypoint.sh.template</file>
+                            <outputFile>entrypoint.sh</outputFile>
                             <regex>false</regex>
                             <replacements>
                                 <replacement>
