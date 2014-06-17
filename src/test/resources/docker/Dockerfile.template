@@ -35,14 +35,15 @@ ADD src/main/webapp/dist /{app.working.directory}/src/main/webapp
 # Add the test resources
 ADD src/test/resources/books_array.json /{app.working.directory}/src/test/resources/books_array.json
 
-# Add the application WEBAPP directory
-ADD entrypoint.sh /{app.working.directory}/
-
 #Set port for the application
 ENV PORT 8080
+
+# Expose app port
+EXPOSE 8080
+
+# Add the application WEBAPP directory
+ADD entrypoint.sh /{app.working.directory}/
 
 # By default start the application
 ENTRYPOINT ["/{app.working.directory}/entrypoint.sh"]
 
-# Expose app port
-EXPOSE 8080
