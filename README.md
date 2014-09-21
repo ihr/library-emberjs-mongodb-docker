@@ -80,3 +80,9 @@ docker run -p 8080:8080 -i -t ihristov/library
 Don't forget to expose the port via the VirtualBox as well
 
 To login docker container put /bin/bash as a final command in the entrypoint.sh script
+
+Troubleshooting: 
+
+In case of : '... Error response from daemon: client and server don't have same version ...'
+
+Run: boot2docker stop && boot2docker download && boot2docker up

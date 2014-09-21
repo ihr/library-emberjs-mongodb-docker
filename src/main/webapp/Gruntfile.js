@@ -1,4 +1,4 @@
-// Generated on 2014-06-10 using generator-ember 0.8.4
+// Generated on 2014-08-21 using generator-ember 0.8.4
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
