@@ -4,8 +4,6 @@ mongod --fork --logpath /var/log/mongodb.log
 
 cd /{app.working.directory}
 
-pwd
-
 mongoimport -v -d library -c books --jsonArray --file src/test/resources/books_array.json
 
 java -Dorg.eclipse.jetty.servlet.LEVEL=ALL -jar {app.name}-{app.version}.jar

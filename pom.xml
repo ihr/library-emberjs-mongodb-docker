@@ -21,7 +21,7 @@
         <!-- Docker properties -->
         <app.docker.working.directory>app</app.docker.working.directory>
         <docker.container.name>ihristov_library</docker.container.name>
-        <docker.tag.name>ihristov/library</docker.tag.name>
+        <docker.image.tag>ihristov/library</docker.image.tag>
 
         <!-- Project dependencies-->
         <jetty.version>9.2.0.v20140526</jetty.version>
@@ -45,6 +45,7 @@
         <maven-shade-plugin.version>2.3</maven-shade-plugin.version>
         <exec-maven-plugin.version>1.3.2</exec-maven-plugin.version>
         <maven-replacer-plugin.version>1.5.3</maven-replacer-plugin.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -220,7 +221,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Build Docker container</id>
+                        <id>Build Docker Image</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>exec</goal>
@@ -229,7 +230,7 @@
                             <executable>docker</executable>
                             <arguments>
                                 <argument>build</argument>
-                                <argument>-t=${docker.tag.name}</argument>
+                                <argument>-t=${docker.image.tag}</argument>
                                 <argument>.</argument>
                             </arguments>
                         </configuration>
@@ -273,7 +274,7 @@
                                 <argument>-d</argument>
                                 <argument>--name</argument>
                                 <argument>${docker.container.name}</argument>
-                                <argument>${docker.tag.name}</argument>
+                                <argument>${docker.image.tag}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -299,6 +300,20 @@
                 <artifactId>replacer</artifactId>
                 <version>${maven-replacer-plugin.version}</version>
                 <executions>
+                    <execution>
+                        <id>Prepare docker_rm.sh</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                        <configuration>
+                            <file>src/test/resources/docker/docker_rm.sh.template</file>
+                            <outputFile>docker_rm.sh</outputFile>
+                            <regex>false</regex>
+                            <token>{docker-container.name}</token>
+                            <value>${docker.container.name}</value>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>Prepare Dockerfile</id>
                         <phase>package</phase>

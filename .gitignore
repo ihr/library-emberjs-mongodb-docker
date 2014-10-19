@@ -5,7 +5,7 @@ target
 Dockerfile
 docker_rm.sh
 entrypoint.sh
-
+*.tar
 dependency-reduced-pom.xml
 
 # Mobile Tools for Java (J2ME)
